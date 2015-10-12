@@ -2,6 +2,9 @@
 //  GLSphereExt.hpp
 //  HCI557_Spotlight
 //
+//  Created by Rafael Radkowski on 9/26/15.
+//
+//
 #pragma once
 
 
@@ -32,27 +35,28 @@
 
 
 
-class GLSphereDirect : public GLSphere
+class GLSphere3D : public GLSphere
 {
 public:
+    
+    GLSphere3D(float center_x, float center_y, float center_z, float radius, int rows = 10, int segments = 10 );
+    ~GLSphere3D();
+    
 
-    GLSphereDirect(float center_x, float center_y, float center_z, float radius, int rows = 10, int segments = 10 );
-    ~GLSphereDirect();
-
-
+    /*!
+     Init the geometry object
+     */
+    void init(void);
+    
 protected:
-
-
-
+    
+    
+    
     /*
      Inits the shader program for this object
      */
     virtual void initShader(void);
-
-
-    // The lights object
-	GLLightSource           _light_source0;
-    GLSpotLightSource       _light_source1;
+    
 
 
 

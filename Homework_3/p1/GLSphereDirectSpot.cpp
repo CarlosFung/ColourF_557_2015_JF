@@ -1,4 +1,4 @@
-//
+//  Jiale Feng 2015-10-11
 //  GLSphereExt.cpp
 //  HCI557_GLSphereDirect
 //

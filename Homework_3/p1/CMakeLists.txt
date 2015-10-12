@@ -1,3 +1,4 @@
+# Jiale Feng 2015-10-11
 # Main cmake file
 
 cmake_minimum_required(VERSION 2.6)

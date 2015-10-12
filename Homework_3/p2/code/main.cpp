@@ -1,10 +1,10 @@
 //  Jiale Feng 2015-10-11
-//  main_spotlight.cpp
-//  HCI 557 Spotlight example
+//  main.cpp
+//  OpenGL4Test
 //
 //  Created by Rafael Radkowski on 5/28/15.
 //  Copyright (c) 2015 -. All rights reserved.
-//  Revised by Jiale Feng for Assignment 3 Problem 1
+//  Revised by Chloe M. and Geethanjali J.
 //
 
 // stl include
@@ -29,9 +29,11 @@
 #include "controls.h"
 #include "HCI557Common.h"
 #include "CoordSystem.h"
-#include "GLSphereDirectSpot.h"
-
-
+#include "GLSphere.h"
+#include "GLSphereRed.h"
+#include "GLSphereBlue.h"
+#include "GLSphereGreen.h"
+#include "GLSphereYellow.h"
 
 
 using namespace std;
@@ -50,80 +52,87 @@ extern Trackball trackball;
 
 int main(int argc, const char * argv[])
 {
-
-
+    
+    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //// Init glfw, create a window, and init glew
-
+    
     // Init the GLFW Window
     window = initWindow();
-
-
+    
+    
     // Init the glew api
     initGlew();
-
-
-
+    
+    
+    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //// Create some models
-
+    
     // coordinate system
-    CoordSystem* cs = new CoordSystem(40.0);
-
-
-    GLSphereDirect* sphere = new GLSphereDirect(0.0, 0.0, 0.0, 8.0, 1000, 100);
-
-
+    CoordSystem* cs = new CoordSystem(50.0);
+    
+    
+    GLSphereRed* sphere1 = new GLSphereRed(-25.0, 0.0, 0.0, 5.0, 500, 500);
+    GLSphereBlue* sphere2 = new GLSphereBlue(-10.0, 0.0, 0.0, 5.0, 500, 500);
+    GLSphereGreen* sphere3 = new GLSphereGreen(5.0, 0.0, 0.0, 5.0, 500, 500);
+    GLSphereYellow* sphere4 = new GLSphereYellow(20.0, 0.0, 0.0, 5.0, 500, 500);
+    
+    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //// Main render loop
-
-    // Set up our white background color
+    
+    // Set up our green background color
     static const GLfloat clear_color[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     static const GLfloat clear_depth[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-
+    
     // This sets the camera to a new location
     // the first parameter is the eye position, the second the center location, and the third the up vector.
-    SetViewAsLookAt(glm::vec3(-1.0f, -1.0f, 17.5f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-
-
+    SetViewAsLookAt(glm::vec3(0.0f, 0.0f, 45.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    
+    
     // Enable depth test
     // ignore this line, it allows us to keep the distance value after we proejct each object to a 2d canvas.
     glEnable(GL_DEPTH_TEST);
-
+    
     //sphere->enableNormalVectorRenderer();
-
+    
     // This is our render loop. As long as our window remains open (ESC is not pressed), we'll continue to render things.
     while(!glfwWindowShouldClose(window))
     {
-
-        // Clear the entire buffer with our white color (sets the background to be green).
+        
+        // Clear the entire buffer with our green color (sets the background to be green).
         glClearBufferfv(GL_COLOR , 0, clear_color);
         glClearBufferfv(GL_DEPTH , 0, clear_depth);
-
-
+        
+        
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //// This renders the objects
-
+        
         // Set the trackball locatiom
         SetTrackballLocation(trackball.getRotationMatrix());
-
-        // draw the objects (No need to draw the coordinate)
-        // cs->draw();   
-
-        sphere->draw();
-
+        
+        // draw the objects
+        cs->draw();
+        
+        sphere1->draw();
+        sphere2->draw();
+        sphere3->draw();
+        sphere4->draw();
+        
         //// This renders the objects
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
+        
+        
         // Swap the buffers so that what we drew will appear on the screen.
         glfwSwapBuffers(window);
         glfwPollEvents();
-
+        
     }
-
-
+    
+    
     delete cs;
-
-
+    
+    
 }
+
