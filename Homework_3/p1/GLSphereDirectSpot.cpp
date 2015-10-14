@@ -1,4 +1,4 @@
-//  Jiale Feng 2015-10-11
+//
 //  GLSphereExt.cpp
 //  HCI557_GLSphereDirect
 //
@@ -52,10 +52,10 @@ void GLSphereDirect::initShader(void)
 {
 #ifdef _WIN32
     // This loads the shader program from a file
-    _program = LoadAndCreateShaderProgram("../data/shaders/ass3p2red.vs", "../data/shaders/ass3p2red.fs");
+	_program = LoadAndCreateShaderProgram("../data/shaders/p1.vs", "../data/shaders/p1.fs");
 #else
 	 // This loads the shader program from a file
-    _program = LoadAndCreateShaderProgram("../../data/shaders/ass3p2red.vs", "../../data/shaders/ass3p2red.fs");
+	_program = LoadAndCreateShaderProgram("../../data/shaders/p1.vs", "../../data/shaders/p1.fs");
 #endif
     glUseProgram(_program);
 
